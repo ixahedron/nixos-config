@@ -1,10 +1,14 @@
 { ... }:
 { pkgs, ... }:
+# List packages installed in system profile. To search by name, run:
+# $ nix-env -qaP | grep wget
 let install = [ pkgs.nix-repl
                 pkgs.gitAndTools.gitFull
                 pkgs.vimHugeX
                 pkgs.screen
                 pkgs.tmux
+                pkgs.scrot
+
                 pkgs.htop
                 pkgs.mosh
                 pkgs.autossh
@@ -16,12 +20,14 @@ let install = [ pkgs.nix-repl
                 pkgs.w3m
                 pkgs.lynx
                 pkgs.ncurses
-                pkgs.newsbeuter
                 pkgs.sshfsFuse
                 pkgs.wget
                 pkgs.curl
+
                 pkgs.unrar
                 pkgs.unzip
+                pkgs.p7zip
+
                 pkgs.nettools
                 pkgs.vpnc
                 pkgs.linuxConsoleTools
@@ -35,14 +41,18 @@ let install = [ pkgs.nix-repl
                 pkgs.traceroute
                 pkgs.nmap
                 pkgs.openssl
+
                 pkgs.gcc
+
                 pkgs.ghc
                 pkgs.stack
-                pkgs.gnupg21
+
                 pkgs.mtools
                 pkgs.cdrkit
                 pkgs.syslinux
                 pkgs.qemu
+
+                pkgs.wine
                 
                 pkgs.texlive.combined.scheme-full
                 

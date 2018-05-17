@@ -32,7 +32,10 @@ let
   });
 
   utils = [ pkgs.firefoxWrapper
+            pkgs.chromium
             pkgs.skype
+            pkgs.discord
+            pkgs.tdesktop
 
             pkgs.pulseaudioFull
             pkgs.pavucontrol
@@ -47,6 +50,7 @@ let
             pkgs.haskellPackages.xmobar
             pkgs.dmenu
 
+            pkgs.feh
             pkgs.blender
             pkgs.inkscape
             pkgs.gimp
@@ -57,10 +61,12 @@ let
             pkgs.zathura
             pkgs.mcomix
             pkgs.fbreader
-            pkgs.calibre
+            # pkgs.calibre
+
+            pkgs.xlibs.xbacklight
+            pkgs.redshift
 
             pkgs.xclip
-            pkgs.xlibs.xbacklight
             pkgs.xorg.xev
             pkgs.xorg.xhost
 

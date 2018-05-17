@@ -10,14 +10,14 @@
       ./hardware-configuration.nix
               (import ./packages.nix {}                                 )
               (import ./users.nix { wheel = { ix = "ix"; };
-                                    users = { guest = "guest";     }; } )
+                                    users = { guest = "guest"; }; }     )
               (import ./countries/germany.nix {}                        )
               (import ./boot/grub2.nix        { device = "/dev/sda"; }  )
               (import ./xserver.nix           {}                        )
               (import ./xmonad.nix            {}                        )
               (import ./gpu.nix               { kind = "optimus"; }     )
               (import ./networking.nix        { ssh = true;
-                                                name = "hedron"; }  )
+                                                name = "hedron"; }      )
     ];
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -32,12 +32,6 @@
      defaultLocale = "en_US.UTF-8";
    };
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    wget
-  ];
-
   hardware = {
     opengl.driSupport = true;
     pulseaudio.enable = true;
@@ -51,11 +45,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Enable the X11 windowing system.
-
-  # services.xserver.synaptics.enable = true;
-  # services.xserver.synaptics.minSpeed = "1.3";
 
 
   system.autoUpgrade.enable = true;
