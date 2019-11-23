@@ -2,8 +2,7 @@
 { pkgs, ... }:
 # List packages installed in system profile. To search by name, run:
 # $ nix-env -qaP | grep wget
-let install = [ pkgs.nix-repl
-                pkgs.gitAndTools.gitFull
+let install = [ pkgs.gitAndTools.gitFull
                 pkgs.vimHugeX
                 pkgs.screen
                 pkgs.tmux
@@ -29,8 +28,10 @@ let install = [ pkgs.nix-repl
                 pkgs.p7zip
 
                 pkgs.nettools
+                pkgs.wirelesstools
                 pkgs.vpnc
                 pkgs.linuxConsoleTools
+                pkgs.binutils-unwrapped
                 pkgs.psmisc
                 pkgs.lm_sensors
                 pkgs.kexectools
@@ -46,16 +47,19 @@ let install = [ pkgs.nix-repl
 
                 pkgs.ghc
                 pkgs.stack
+                pkgs.zlib
+                pkgs.hlint
 
                 pkgs.mtools
                 pkgs.cdrkit
                 pkgs.syslinux
                 pkgs.qemu
+                pkgs.patchelf
 
                 pkgs.wine
-                
+
                 pkgs.texlive.combined.scheme-full
-                
+
               ];
 in
 { environment.systemPackages = install; }

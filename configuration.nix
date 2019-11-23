@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./multi-glibc-locale-paths.nix
               (import ./packages.nix {}                                 )
               (import ./users.nix { wheel = { ix = "ix"; };
                                     users = { guest = "guest"; }; }     )
@@ -15,7 +16,7 @@
               (import ./boot/grub2.nix        { device = "/dev/sda"; }  )
               (import ./xserver.nix           {}                        )
               (import ./xmonad.nix            {}                        )
-              (import ./gpu.nix               { kind = "optimus"; }     )
+              (import ./gpu.nix               { kind = "optimus-bumblebee"; }     )
               (import ./networking.nix        { ssh = true;
                                                 name = "hedron"; }      )
     ];
@@ -46,6 +47,14 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  programs.light.enable = true;
+  services.actkbd = {
+    enable = true;
+    bindings = [
+      { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -U 10"; }
+      { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -A 10"; }
+    ];
+  };
 
   system.autoUpgrade.enable = true;
   # The NixOS release to be compatible with for stateful data such as databases.

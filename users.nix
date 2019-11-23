@@ -1,7 +1,7 @@
 { wheel ? {}, users ? {}, ...}:
 { pkgs, ...} :
 
-let 
+let
 
 maybeAttr = name: default: attrs: attrs.${name} or default;
 
@@ -24,8 +24,9 @@ mergeAttrs = x: y: x // y;
 
 in
 
-{ users.extraUsers = 
+{ users.extraUsers =
           (mapAttrs (x: _y: { group = "wheel";
+                              extraGroups = [ "video" ];
                               createHome = true;
                               home = "/home/${x}";
                               shell = "/run/current-system/sw/bin/bash"; }) wheel)

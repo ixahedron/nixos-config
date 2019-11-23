@@ -1,12 +1,12 @@
 { touchpad ? "tapPad",  kbLayout ? "lv,de,ru", kbOptions ? "grp:caps_toggle", ... }:
 { pkgs, ... }:
 
-let 
+let
 
   mkSynaptics = x:
     if x == "tapPad" then {
       enable = true;
-      minSpeed = "1.0"; 
+      minSpeed = "1.0";
       maxSpeed = "2.0";
       tapButtons = true;
       twoFingerScroll = true;
@@ -60,33 +60,49 @@ let
 
             pkgs.zathura
             pkgs.mcomix
-            pkgs.fbreader
+            # pkgs.fbreader
             # pkgs.calibre
 
-            pkgs.xlibs.xbacklight
             pkgs.redshift
 
             pkgs.xclip
             pkgs.xorg.xev
             pkgs.xorg.xhost
 
-            pkgs.wireshark-gtk
+            pkgs.glibc
+            pkgs.xorg.libXinerama
+            pkgs.xorg.libXcursor
+            pkgs.xorg.libXrandr
+            pkgs.xorg.libXi
+            pkgs.xorg.libX11
+            pkgs.libGL
+            pkgs.libpulseaudio
+            pkgs.libpng
+            pkgs.libpng12
+            pkgs.alsaLib
+
+            pkgs.wireshark-cli
           ];
 
-  fonts = [ pkgs.cantarell_fonts
-            pkgs.corefonts
-            pkgs.dejavu_fonts
-            pkgs.dina-font
-            pkgs.dosemu_fonts
-            pkgs.freefont_ttf
-            pkgs.terminus_font
-            pkgs.gyre-fonts
-            # pkgs.lohit-fonts
-            pkgs.proggyfonts
-            pkgs.ubuntu_font_family
+  fonts = with pkgs; [
+            cantarell_fonts
+            corefonts
+            dejavu_fonts
+            dina-font
+            dosemu_fonts
+            freefont_ttf
+            gyre-fonts
+            #lohit-fonts
+            open-sans
+            proggyfonts
+            terminus_font
+            ubuntu_font_family
+            emojione
+            joypixels
+            twitter-color-emoji
           ];
 
-in 
+in
 {
   # Use wicd
   imports = [ ./xserver/wicd.nix ./xserver/unfree.nix ];
@@ -97,15 +113,23 @@ in
     layout = kbLayout;
     xkbOptions = kbOptions;
     synaptics = mkSynaptics touchpad;
-    displayManager.slim = {
+    displayManager.sddm = {
       enable = true;
-      autoLogin = false;
-      defaultUser = "ix";
-      theme = pkgs.fetchurl {
-        url    = "https://github.com/jagajaga/nixos-slim-theme/archive/Final.tar.gz";
-        sha256 = "4cab5987a7f1ad3cc463780d9f1ee3fbf43603105e6a6e538e4c2147bde3ee6b";
+      autoNumlock = true;
+      autoLogin = {
+        enable = false;
+        user = "ix";
       };
+#      theme = pkgs.fetchurl {
+#        url    = "https://store.kde.org/p/1232289/startdownload?file_id=1525176206&file_name=nixos-noblur.tar.gz&file_type=application/x-gzip&file_size=5289842";
+#      };
     };
   };
-  environment.systemPackages = builtins.concatLists [ utils fonts ];
+
+  fonts = {
+    enableFontDir = true;
+    fonts = fonts;
+  };
+
+  environment.systemPackages = builtins.concatLists [ utils ];
 }
