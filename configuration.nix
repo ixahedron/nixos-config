@@ -26,10 +26,12 @@
   # networking.networkmanager.unmanaged = ["enp2s0f0"];
 
   # Select internationalisation properties.
-   i18n = {
+   console = {
      # consoleFont = "Lat2-Terminus16";
-     consoleFont = "LatArCyrHeb-16";
-     consoleKeyMap = "us";
+     font = "LatArCyrHeb-16";
+     keyMap = "us";
+   };
+   i18n = {
      defaultLocale = "en_US.UTF-8";
    };
 

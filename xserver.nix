@@ -44,7 +44,7 @@ let
             pkgs.ffmpeg
             pkgs.vlc
 
-            pkgs.rxvt_unicode_with-plugins
+            pkgs.rxvt-unicode
             pkgs.urxvt_perls
 
             pkgs.haskellPackages.xmobar
@@ -59,7 +59,6 @@ let
             pkgs.clipit
 
             pkgs.zathura
-            pkgs.mcomix
             # pkgs.fbreader
             # pkgs.calibre
 
@@ -82,6 +81,11 @@ let
             pkgs.alsaLib
 
             pkgs.wireshark-cli
+
+            pkgs.qt5.qtbase
+            pkgs.qt5.qtquickcontrols
+            pkgs.qt5.qtgraphicaleffects
+
           ];
 
   fonts = with pkgs; [
@@ -92,14 +96,10 @@ let
             dosemu_fonts
             freefont_ttf
             gyre-fonts
-            #lohit-fonts
             open-sans
             proggyfonts
             terminus_font
             ubuntu_font_family
-            emojione
-            joypixels
-            twitter-color-emoji
           ];
 
 in
@@ -113,23 +113,38 @@ in
     layout = kbLayout;
     xkbOptions = kbOptions;
     synaptics = mkSynaptics touchpad;
-    displayManager.sddm = {
-      enable = true;
-      autoNumlock = true;
-      autoLogin = {
-        enable = false;
-        user = "ix";
+
+    displayManager = {
+      defaultSession = "none+xmonad";
+      sessionCommands = "${pkgs.xorg.xsetroot}/bin/xsetroot -solid black";
+      sddm = {
+        enable = true;
+        autoNumlock = true;
+        autoLogin = {
+          enable = false;
+          user = "ix";
+        };
+        theme = "chili";
       };
-#      theme = pkgs.fetchurl {
-#        url    = "https://store.kde.org/p/1232289/startdownload?file_id=1525176206&file_name=nixos-noblur.tar.gz&file_type=application/x-gzip&file_size=5289842";
-#      };
+
     };
   };
 
   fonts = {
     enableFontDir = true;
+    enableDefaultFonts = true;
+
     fonts = fonts;
+
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "DejaVu Serif" ];
+        sansSerif = [ "DejaVu Sans" "Open Sans" "Liberation Sans" ];
+        monospace = [ "DejaVu Sans Mono" ];
+      };
+    };
   };
 
-  environment.systemPackages = builtins.concatLists [ utils ];
+  environment.systemPackages =
+    let chili = pkgs.callPackage ./xserver/sddm-theme-chili.nix {}; in builtins.concatLists [ utils [chili] ];
 }

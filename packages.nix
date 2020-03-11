@@ -56,7 +56,7 @@ let install = [ pkgs.gitAndTools.gitFull
                 pkgs.qemu
                 pkgs.patchelf
 
-                pkgs.wine
+                pkgs.wineWowPackages.staging
 
                 pkgs.texlive.combined.scheme-full
 

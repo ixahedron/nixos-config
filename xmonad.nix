@@ -5,5 +5,4 @@
     enable = true;
     enableContribAndExtras = true;
   };
-  services.xserver.windowManager.default = "xmonad";
 }
