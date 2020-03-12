@@ -56,10 +56,18 @@ let install = [ pkgs.gitAndTools.gitFull
                 pkgs.qemu
                 pkgs.patchelf
 
-                pkgs.wineWowPackages.staging
+                # pkgs.wineWowPackages.staging
+                pkgs.wine-devel
 
                 pkgs.texlive.combined.scheme-full
 
               ];
-in
-{ environment.systemPackages = install; }
+in {
+
+  imports =
+    [
+      ./packages/wine-devel.nix
+    ];
+
+  environment.systemPackages = install;
+}
