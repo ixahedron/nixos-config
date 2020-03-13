@@ -16,7 +16,7 @@
               (import ./boot/grub2.nix        { device = "/dev/sda"; }  )
               (import ./xserver.nix           {}                        )
               (import ./xmonad.nix            {}                        )
-              (import ./gpu.nix               { kind = "optimus-bumblebee"; }     )
+              (import ./gpu.nix               { kind = "nvidia-offload"; }     )
               (import ./networking.nix        { ssh = true;
                                                 name = "hedron"; }      )
     ];
@@ -36,10 +36,10 @@
    };
 
   hardware = {
-    opengl.driSupport = true;
     pulseaudio.enable = true;
-    opengl.driSupport32Bit = true;
     pulseaudio.support32Bit = true;
+    opengl.driSupport = true;
+    opengl.driSupport32Bit = true;
   };
 
  # services.acpid.lidEventCommands = "slimlock";
