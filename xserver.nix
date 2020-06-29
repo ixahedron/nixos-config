@@ -55,14 +55,12 @@ let
             pkgs.inkscape
             pkgs.gimp
 
-            pkgs.autocutsel
+            # pkgs.autocutsel
             pkgs.clipit
 
             pkgs.zathura
             # pkgs.fbreader
             # pkgs.calibre
-
-            pkgs.redshift
 
             pkgs.xclip
             pkgs.xorg.xev
@@ -102,6 +100,10 @@ let
             ubuntu_font_family
           ];
 
+  additionalKeybinds = pkgs.writeText "xkb-layout" ''
+      keycode 223 = at
+    '';
+
 in
 {
   # Use wicd
@@ -116,7 +118,7 @@ in
 
     displayManager = {
       defaultSession = "none+xmonad";
-      sessionCommands = "${pkgs.xorg.xsetroot}/bin/xsetroot -solid black";
+      sessionCommands = "${pkgs.xorg.xsetroot}/bin/xsetroot -solid black; ${pkgs.xorg.xmodmap}/bin/xmodmap ${additionalKeybinds}";
       sddm = {
         enable = true;
         autoNumlock = true;

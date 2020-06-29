@@ -25,7 +25,6 @@ let install = [ pkgs.gitAndTools.gitFull
 
                 pkgs.unrar
                 pkgs.unzip
-                pkgs.p7zip
 
                 pkgs.nettools
                 pkgs.wirelesstools
