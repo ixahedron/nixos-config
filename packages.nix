@@ -48,6 +48,9 @@ let install = [ pkgs.gitAndTools.gitFull
                 pkgs.stack
                 pkgs.zlib
                 pkgs.hlint
+                pkgs.stylish-haskell
+
+                pkgs.nodejs-14_x
 
                 pkgs.mtools
                 pkgs.cdrkit

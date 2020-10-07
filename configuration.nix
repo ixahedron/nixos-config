@@ -37,17 +37,23 @@
 
   hardware = {
     pulseaudio.enable = true;
+    pulseaudio.package = pkgs.pulseaudioFull;
     pulseaudio.support32Bit = true;
     opengl.driSupport = true;
     opengl.driSupport32Bit = true;
+
+    bluetooth.enable = true;
   };
 
  # services.acpid.lidEventCommands = "slimlock";
 
   # List services that you want to enable:
 
+  programs.gnupg.agent.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.blueman.enable = true;
 
   programs.light.enable = true;
   services.actkbd = {

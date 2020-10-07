@@ -35,7 +35,7 @@ let
             pkgs.chromium
             pkgs.skype
             pkgs.discord
-            pkgs.tdesktop
+            #pkgs.tdesktop
 
             pkgs.pulseaudioFull
             pkgs.pavucontrol
@@ -106,8 +106,9 @@ let
 
 in
 {
-  # Use wicd
-  imports = [ ./xserver/wicd.nix ./xserver/unfree.nix ];
+  # Don't use wicd
+  # imports = [ ./xserver/wicd.nix ./xserver/unfree.nix ];
+  imports = [ ./xserver/unfree.nix ];
   # Use pulse
   hardware.pulseaudio.enable = true;
   services.xserver = {
@@ -119,13 +120,13 @@ in
     displayManager = {
       defaultSession = "none+xmonad";
       sessionCommands = "${pkgs.xorg.xsetroot}/bin/xsetroot -solid black; ${pkgs.xorg.xmodmap}/bin/xmodmap ${additionalKeybinds}";
+      autoLogin = {
+        enable = false;
+        user = "ix";
+      };
       sddm = {
         enable = true;
         autoNumlock = true;
-        autoLogin = {
-          enable = false;
-          user = "ix";
-        };
         theme = "chili";
       };
 

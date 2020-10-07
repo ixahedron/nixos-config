@@ -19,7 +19,7 @@ if kind == "nvidia" then {
       prime.offload.enable = true;
       prime.nvidiaBusId = "PCI:1:0:0";
       prime.intelBusId = "PCI:0:2:0";
-      modesetting = true;
+      modesetting.enable = true;
     };
     opengl = {
       enable = true;
