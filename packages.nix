@@ -12,7 +12,7 @@ let install = [ pkgs.gitAndTools.gitFull
                 pkgs.mosh
                 pkgs.autossh
                 pkgs.acpi
-                pkgs.proxychains
+                #pkgs.proxychains
                 pkgs.nginx
                 pkgs.httpie
                 pkgs.iptables
@@ -59,17 +59,17 @@ let install = [ pkgs.gitAndTools.gitFull
                 pkgs.patchelf
 
                 # pkgs.wineWowPackages.staging
-                pkgs.wine-devel
+                # pkgs.wine-devel
 
                 pkgs.texlive.combined.scheme-full
 
               ];
 in {
 
-  imports =
-    [
-      ./packages/wine-devel.nix
-    ];
+#  imports =
+#    [
+#      ./packages/wine-devel.nix
+#    ];
 
   environment.systemPackages = install;
 }

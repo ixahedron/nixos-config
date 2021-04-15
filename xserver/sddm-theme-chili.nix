@@ -1,4 +1,4 @@
-{ pkgs, stdenv, ... }:
+{ pkgs, stdenv, lib, ... }:
 
 stdenv.mkDerivation rec {
   pname = "chili";
@@ -13,12 +13,14 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ pkgs.qt5.qtbase pkgs.qt5.qtquickcontrols pkgs.qt5.qtgraphicaleffects ];
 
+  dontWrapQtApps = true;
+
   installPhase = ''
     mkdir -p $out/share/sddm/themes/chili
     mv * $out/share/sddm/themes/chili/
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     license = licenses.gpl3;
     maintainers = with maintainers; [ mschneider ];
     homepage = https://github.com/MarianArlt/sddm-chili;

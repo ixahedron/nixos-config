@@ -27,7 +27,7 @@ let
     };
 
 
-  blender = pkgs.stdenv.lib.overrideDerivation pkgs.blender (oldAttrs: {
+  blender = pkgs.lib.overrideDerivation pkgs.blender (oldAttrs: {
 	  cudaSupport = true;
   });
 
@@ -134,7 +134,7 @@ in
   };
 
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     enableDefaultFonts = true;
 
     fonts = fonts;

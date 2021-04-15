@@ -51,6 +51,11 @@
 
   programs.gnupg.agent.enable = true;
 
+  # for Serokell development work
+  # virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "ix" ];
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
   services.blueman.enable = true;
@@ -66,6 +71,5 @@
 
   system.autoUpgrade.enable = true;
   # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "16.09";
-
+  system.stateVersion = "17.09";
 }

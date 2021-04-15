@@ -26,6 +26,7 @@ in
 
 { users.extraUsers =
           (mapAttrs (x: _y: { group = "wheel";
+                              # extraGroups = [ "video" "docker" ];
                               extraGroups = [ "video" ];
                               createHome = true;
                               home = "/home/${x}";
