@@ -30,6 +30,7 @@ let install = [ pkgs.gitAndTools.gitFull
                 pkgs.wirelesstools
                 pkgs.vpnc
                 pkgs.linuxConsoleTools
+                pkgs.gnumake
                 pkgs.binutils-unwrapped
                 pkgs.psmisc
                 pkgs.lm_sensors
@@ -56,10 +57,13 @@ let install = [ pkgs.gitAndTools.gitFull
                 pkgs.cdrkit
                 pkgs.syslinux
                 pkgs.qemu
+                pkgs.pciutils
+                pkgs.clinfo
                 pkgs.patchelf
 
                 # pkgs.wineWowPackages.staging
                 # pkgs.wine-devel
+                pkgs.wine
 
                 pkgs.texlive.combined.scheme-full
 

@@ -31,91 +31,93 @@ let
 	  cudaSupport = true;
   });
 
-  utils = [ pkgs.firefoxWrapper
-            pkgs.chromium
-            pkgs.skype
-            pkgs.discord
-            #pkgs.tdesktop
+  utils = with pkgs; [
+    firefoxWrapper
+    chromium
+    skype
+    discord
+    # tdesktop
 
-            pkgs.pulseaudioFull
-            pkgs.pavucontrol
+    pulseaudioFull
+    pavucontrol
 
-            pkgs.mplayer
-            pkgs.ffmpeg
-            pkgs.vlc
+    mplayer
+    ffmpeg
+    vlc
 
-            pkgs.rxvt-unicode
-            pkgs.urxvt_perls
+    rxvt-unicode
+    urxvt_perls
 
-            pkgs.haskellPackages.xmobar
-            pkgs.dmenu
+    haskellPackages.xmobar
+    dmenu
 
-            pkgs.feh
-            pkgs.blender
-            pkgs.inkscape
-            pkgs.gimp
+    feh
+    # blender
+    inkscape
+    gimp
 
-            # pkgs.autocutsel
-            pkgs.clipit
+    # autocutsel
+    clipit
 
-            pkgs.zathura
-            # pkgs.fbreader
-            # pkgs.calibre
+    zathura
+    # fbreader
+    # calibre
 
-            pkgs.xclip
-            pkgs.xorg.xev
-            pkgs.xorg.xhost
+    xclip
+    xorg.xev
+    xorg.xhost
 
-            pkgs.glibc
-            pkgs.xorg.libXinerama
-            pkgs.xorg.libXcursor
-            pkgs.xorg.libXrandr
-            pkgs.xorg.libXi
-            pkgs.xorg.libX11
-            pkgs.libGL
-            pkgs.libpulseaudio
-            pkgs.libpng
-            pkgs.libpng12
-            pkgs.alsaLib
+    glibc
+    xorg.libXinerama
+    xorg.libXcursor
+    xorg.libXrandr
+    xorg.libXi
+    xorg.libX11
+    libGL
+    libpulseaudio
+    libpng
+    libpng12
+    alsaLib
 
-            pkgs.wireshark-cli
+    wireshark-cli
 
-            pkgs.qt5.qtbase
-            pkgs.qt5.qtquickcontrols
-            pkgs.qt5.qtgraphicaleffects
-
-          ];
+    qt5.qtbase
+    qt5.qtquickcontrols
+    qt5.qtgraphicaleffects
+    ( callPackage ./xserver/dungeondraft/default.nix { } )
+    ( callPackage ./xserver/sddm-theme-chili.nix { } )
+  ];
 
   fonts = with pkgs; [
-            cantarell_fonts
-            corefonts
-            dejavu_fonts
-            dina-font
-            dosemu_fonts
-            freefont_ttf
-            gyre-fonts
-            open-sans
-            proggyfonts
-            terminus_font
-            ubuntu_font_family
-          ];
+    cantarell_fonts
+    corefonts
+    dejavu_fonts
+    dina-font
+    dosemu_fonts
+    freefont_ttf
+    gyre-fonts
+    open-sans
+    proggyfonts
+    terminus_font
+    ubuntu_font_family
+  ];
 
   additionalKeybinds = pkgs.writeText "xkb-layout" ''
-      keycode 223 = at
-    '';
+    keycode 223 = at
+  '';
 
 in
 {
   # Don't use wicd
   # imports = [ ./xserver/wicd.nix ./xserver/unfree.nix ];
   imports = [ ./xserver/unfree.nix ];
-  # Use pulse
-  hardware.pulseaudio.enable = true;
   services.xserver = {
     enable = true;
     layout = kbLayout;
     xkbOptions = kbOptions;
-    synaptics = mkSynaptics touchpad;
+    libinput = {
+      enable = true;
+    };
 
     displayManager = {
       defaultSession = "none+xmonad";
@@ -148,6 +150,5 @@ in
     };
   };
 
-  environment.systemPackages =
-    let chili = pkgs.callPackage ./xserver/sddm-theme-chili.nix {}; in builtins.concatLists [ utils [chili] ];
+  environment.systemPackages = utils;
 }

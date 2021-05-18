@@ -13,17 +13,13 @@
               (import ./users.nix { wheel = { ix = "ix"; };
                                     users = { guest = "guest"; }; }     )
               (import ./countries/germany.nix {}                        )
-              (import ./boot/grub2.nix        { device = "/dev/sda"; }  )
+              (import ./boot/efi.nix          {}                        )
               (import ./xserver.nix           {}                        )
               (import ./xmonad.nix            {}                        )
               (import ./gpu.nix               { kind = "nvidia-offload"; }     )
               (import ./networking.nix        { ssh = true;
                                                 name = "hedron"; }      )
     ];
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;
-  # networking.networkmanager.unmanaged = ["enp2s0f0"];
 
   # Select internationalisation properties.
    console = {
@@ -39,13 +35,11 @@
     pulseaudio.enable = true;
     pulseaudio.package = pkgs.pulseaudioFull;
     pulseaudio.support32Bit = true;
-    opengl.driSupport = true;
-    opengl.driSupport32Bit = true;
 
     bluetooth.enable = true;
   };
 
- # services.acpid.lidEventCommands = "slimlock";
+  services.logind.lidSwitch = "hibernate";
 
   # List services that you want to enable:
 
@@ -70,6 +64,11 @@
   };
 
   system.autoUpgrade.enable = true;
-  # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "17.09";
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "20.09"; # Did you read the comment?
 }
