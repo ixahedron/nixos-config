@@ -84,8 +84,10 @@ let
     qt5.qtbase
     qt5.qtquickcontrols
     qt5.qtgraphicaleffects
-    ( callPackage ./xserver/dungeondraft/default.nix { } )
     ( callPackage ./xserver/sddm-theme-chili.nix { } )
+
+    ( callPackage ./xserver/dungeondraft/default.nix { } )
+    ( callPackage ./xserver/wonderdraft/default.nix { } )
   ];
 
   fonts = with pkgs; [
