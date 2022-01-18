@@ -87,7 +87,9 @@ let
     ( callPackage ./xserver/sddm-theme-chili.nix { } )
 
     ( callPackage ./xserver/dungeondraft/default.nix { } )
+    ( writeShellScriptBin "dungeondraft-offload" "nvidia-offload dungeondraft" )
     ( callPackage ./xserver/wonderdraft/default.nix { } )
+    ( writeShellScriptBin "wonderdraft-offload" "nvidia-offload wonderdraft" )
   ];
 
   fonts = with pkgs; [

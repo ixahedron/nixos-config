@@ -51,7 +51,7 @@ let install = [ pkgs.gitAndTools.gitFull
                 pkgs.hlint
                 pkgs.stylish-haskell
 
-                pkgs.nodejs-14_x
+                # pkgs.nodejs-14_x
 
                 pkgs.mtools
                 pkgs.cdrkit
@@ -63,9 +63,9 @@ let install = [ pkgs.gitAndTools.gitFull
 
                 # pkgs.wineWowPackages.staging
                 # pkgs.wine-devel
-                pkgs.wine
+                #pkgs.wine
 
-                pkgs.texlive.combined.scheme-full
+                #pkgs.texlive.combined.scheme-full
 
               ];
 in {

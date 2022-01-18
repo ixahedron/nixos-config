@@ -2,13 +2,13 @@
 
 let
   name = "Wonderdraft";
-  version = "1.1.5";
+  version = "1.1.6";
 
 in
 stdenv.mkDerivation {
   inherit name version;
 
-  src = ./Wonderdraft-1.1.5.3-Linux64.zip;
+  src = ./Wonderdraft-1.1.6.1-Linux64.zip;
 
   nativeBuildInputs = with pkgs; [
     autoPatchelfHook

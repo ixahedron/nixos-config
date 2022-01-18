@@ -1,15 +1,14 @@
 { pkgs, stdenv, lib, ... }:
 let
-  inherit (stdenv) lib;
   name = "dungeondraft";
-  version = "1.0.1.1";
+  version = "1.0.2.1";
   path = lib.makeBinPath [ pkgs.gnome3.zenity pkgs.gdb ];
 
 in
 stdenv.mkDerivation rec {
   inherit name version;
 
-  src = ./Dungeondraft-1.0.1.1-Linux64.zip;
+  src = ./Dungeondraft-1.0.2.1-Linux64.zip;
 
   nativeBuildInputs = with pkgs; [
     autoPatchelfHook

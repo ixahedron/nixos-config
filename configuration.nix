@@ -19,6 +19,7 @@
               (import ./gpu.nix               { kind = "nvidia-offload"; }     )
               (import ./networking.nix        { ssh = true;
                                                 name = "hedron"; }      )
+              (import ./serokell.nix {}                                 )
     ];
 
   # Select internationalisation properties.
@@ -45,11 +46,6 @@
 
   programs.gnupg.agent.enable = true;
 
-  # for Serokell development work
-  # virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "ix" ];
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
   services.blueman.enable = true;
@@ -62,6 +58,8 @@
       { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -A 10"; }
     ];
   };
+
+  nix.autoOptimiseStore = true;
 
   system.autoUpgrade.enable = true;
   # This value determines the NixOS release from which the default

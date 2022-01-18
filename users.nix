@@ -6,8 +6,8 @@
   users.users = {
     ix = {
       isNormalUser = true;
-      # extraGroups = [ "wheel" "video" "docker" ];
-      extraGroups = [ "wheel" "video" ];
+      extraGroups = [ "wheel" "video" "docker" ];
+      # extraGroups = [ "wheel" "video" ];
     };
 
     guest = {
