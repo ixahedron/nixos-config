@@ -32,9 +32,9 @@ let
   });
 
   utils = with pkgs; [
-    firefoxWrapper
+    firefox
     chromium
-    skype
+    skypeforlinux
     discord
     # tdesktop
 
@@ -93,7 +93,7 @@ let
   ];
 
   fonts = with pkgs; [
-    cantarell_fonts
+    cantarell-fonts
     corefonts
     dejavu_fonts
     dina-font

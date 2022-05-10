@@ -3,6 +3,7 @@
 {
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.graceful = true;
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.devices.nixos = {
@@ -13,7 +14,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/tmp/windisk" =
-    { device = "/dev/nvme0n1p3";
+    { device = "/dev/nvme1n1p3";
       fsType = "ntfs";
       options = [ "rw" "uid=1001"];
     };

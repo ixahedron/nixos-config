@@ -42,6 +42,14 @@
 
   services.logind.lidSwitch = "hibernate";
 
+  services.upower = {
+    enable = true;
+    percentageLow = 20;
+    percentageCritical = 10;
+    percentageAction = 5;
+    criticalPowerAction = "Hibernate";
+  };
+
   # List services that you want to enable:
 
   programs.gnupg.agent.enable = true;
@@ -59,7 +67,12 @@
     ];
   };
 
-  nix.autoOptimiseStore = true;
+  nix = {
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+    settings.auto-optimise-store = true;
+  };
 
   system.autoUpgrade.enable = true;
   # This value determines the NixOS release from which the default

@@ -19,7 +19,7 @@ let install = [ pkgs.gitAndTools.gitFull
                 pkgs.w3m
                 pkgs.lynx
                 pkgs.ncurses
-                pkgs.sshfsFuse
+                pkgs.sshfs-fuse
                 pkgs.wget
                 pkgs.curl
 
