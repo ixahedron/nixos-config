@@ -2,72 +2,74 @@
 { pkgs, ... }:
 # List packages installed in system profile. To search by name, run:
 # $ nix-env -qaP | grep wget
-let install = [ pkgs.gitAndTools.gitFull
-                pkgs.vimHugeX
-                pkgs.screen
-                pkgs.tmux
-                pkgs.scrot
+let
+  install = with pkgs; [
+    gitAndTools.gitFull
+    vimHugeX
+    screen
+    tmux
+    escrotum
 
-                pkgs.htop
-                pkgs.mosh
-                pkgs.autossh
-                pkgs.acpi
-                #pkgs.proxychains
-                pkgs.nginx
-                pkgs.httpie
-                pkgs.iptables
-                pkgs.w3m
-                pkgs.lynx
-                pkgs.ncurses
-                pkgs.sshfs-fuse
-                pkgs.wget
-                pkgs.curl
+    htop
+    mosh
+    autossh
+    acpi
+    #proxychains
+    nginx
+    httpie
+    iptables
+    w3m
+    lynx
+    ncurses
+    sshfs-fuse
+    wget
+    curl
 
-                pkgs.unrar
-                pkgs.unzip
+    unrar
+    unzip
 
-                pkgs.nettools
-                pkgs.wirelesstools
-                pkgs.vpnc
-                pkgs.linuxConsoleTools
-                pkgs.gnumake
-                pkgs.binutils-unwrapped
-                pkgs.psmisc
-                pkgs.lm_sensors
-                pkgs.kexectools
-                pkgs.figlet
-                pkgs.gnupg
-                pkgs.tcpdump
-                pkgs.strace
-                pkgs.traceroute
-                pkgs.nmap
-                pkgs.openssl
+    nettools
+    wirelesstools
+    vpnc
+    linuxConsoleTools
+    gnumake
+    binutils-unwrapped
+    psmisc
+    lm_sensors
+    kexectools
+    figlet
+    gnupg
+    tcpdump
+    strace
+    traceroute
+    nmap
+    openssl
 
-                pkgs.gcc
+    gcc
 
-                pkgs.ghc
-                pkgs.stack
-                pkgs.zlib
-                pkgs.hlint
-                pkgs.stylish-haskell
+    ghc
+    stack
+    zlib
+    hlint
+    stylish-haskell
 
-                # pkgs.nodejs-14_x
+    # nodejs-14_x
 
-                pkgs.mtools
-                pkgs.cdrkit
-                pkgs.syslinux
-                pkgs.qemu
-                pkgs.pciutils
-                pkgs.clinfo
-                pkgs.patchelf
+    mtools
+    cdrkit
+    syslinux
+    qemu
+    pciutils
+    clinfo
+    patchelf
 
-                # pkgs.wineWowPackages.staging
-                # pkgs.wine-devel
-                #pkgs.wine
+    # wineWowPackages.staging
+    # wine-devel
+    # wine
 
-                #pkgs.texlive.combined.scheme-full
+    # texlive.combined.scheme-full
 
-              ];
+  ];
 in {
 
 #  imports =
