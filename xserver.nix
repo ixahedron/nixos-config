@@ -1,4 +1,4 @@
-{ touchpad ? "tapPad",  kbLayout ? "lv,de,ru", kbOptions ? "grp:caps_toggle", ... }:
+{ touchpad ? "tapPad",  kbLayout ? "lv,de,ru", kbOptions ? "grp:caps_toggle,grp:lshift_toggle", ... }:
 { pkgs, ... }:
 
 let
@@ -86,10 +86,10 @@ let
     qt5.qtgraphicaleffects
     ( callPackage ./xserver/sddm-theme-chili.nix { } )
 
-    ( callPackage ./xserver/dungeondraft/default.nix { } )
-    ( writeShellScriptBin "dungeondraft-offload" "nvidia-offload dungeondraft" )
-    ( callPackage ./xserver/wonderdraft/default.nix { } )
-    ( writeShellScriptBin "wonderdraft-offload" "nvidia-offload wonderdraft" )
+#    ( callPackage ./xserver/dungeondraft/default.nix { } )
+#    ( writeShellScriptBin "dungeondraft-offload" "nvidia-offload dungeondraft" )
+#    ( callPackage ./xserver/wonderdraft/default.nix { } )
+#    ( writeShellScriptBin "wonderdraft-offload" "nvidia-offload wonderdraft" )
   ];
 
   fonts = with pkgs; [
@@ -104,6 +104,7 @@ let
     proggyfonts
     terminus_font
     ubuntu_font_family
+    ucs-fonts
   ];
 
   additionalKeybinds = pkgs.writeText "xkb-layout" ''
@@ -141,9 +142,9 @@ in
 
   fonts = {
     fontDir.enable = true;
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
 
-    fonts = fonts;
+    packages = fonts;
 
     fontconfig = {
       defaultFonts = {

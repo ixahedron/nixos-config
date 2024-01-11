@@ -19,7 +19,6 @@
               (import ./gpu.nix               { kind = "nvidia-offload"; }     )
               (import ./networking.nix        { ssh = true;
                                                 name = "hedron"; }      )
-              (import ./serokell.nix {}                                 )
     ];
 
   # Select internationalisation properties.
@@ -56,6 +55,8 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [ pkgs.brlaser pkgs.brgenml1lpr pkgs.brgenml1cupswrapper ];
+
   services.blueman.enable = true;
 
   programs.light.enable = true;
@@ -71,6 +72,11 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
     settings.auto-optimise-store = true;
   };
 
