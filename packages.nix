@@ -9,6 +9,7 @@ let
     screen
     tmux
     escrotum
+    direnv
 
     htop
     mosh
@@ -27,6 +28,7 @@ let
 
     unrar
     unzip
+    zip
 
     nettools
     wirelesstools
@@ -38,20 +40,19 @@ let
     lm_sensors
     kexectools
     figlet
-    gnupg
     tcpdump
     strace
     traceroute
     nmap
     openssl
 
+    gnupg
+    pinentry-all
+
     gcc
 
     ghc
-    stack
     zlib
-    hlint
-    stylish-haskell
 
     # nodejs-14_x
 

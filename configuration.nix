@@ -19,6 +19,7 @@
               (import ./gpu.nix               { kind = "nvidia-offload"; }     )
               (import ./networking.nix        { ssh = true;
                                                 name = "hedron"; }      )
+              (import ./work/doma.nix         {}                        )
     ];
 
   # Select internationalisation properties.
@@ -32,26 +33,34 @@
    };
 
   hardware = {
-    pulseaudio.enable = true;
-    pulseaudio.package = pkgs.pulseaudioFull;
-    pulseaudio.support32Bit = true;
-
     bluetooth.enable = true;
   };
 
-  services.logind.lidSwitch = "hibernate";
+  # Sound
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   services.upower = {
     enable = true;
     percentageLow = 20;
-    percentageCritical = 10;
-    percentageAction = 5;
+    percentageCritical = 15;
+    percentageAction = 10;
     criticalPowerAction = "Hibernate";
   };
 
   # List services that you want to enable:
 
-  programs.gnupg.agent.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  programs.direnv.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -69,6 +78,7 @@
   };
 
   nix = {
+    channel.enable = true;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -77,10 +87,13 @@
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
-    settings.auto-optimise-store = true;
+    settings = {
+      # nix-path = config.nix.nixPath;
+      auto-optimise-store = true;
+    };
   };
 
-  system.autoUpgrade.enable = true;
+#  system.autoUpgrade.enable = true;
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

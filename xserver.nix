@@ -27,19 +27,18 @@ let
     };
 
 
-  blender = pkgs.lib.overrideDerivation pkgs.blender (oldAttrs: {
-	  cudaSupport = true;
-  });
+  # blender = pkgs.lib.overrideDerivation pkgs.blender (oldAttrs: {
+	#   cudaSupport = true;
+  # });
 
   utils = with pkgs; [
     firefox
     chromium
-    skypeforlinux
     discord
     # tdesktop
 
-    pulseaudioFull
     pavucontrol
+    pulseaudio # for pactl in xmonad -- change to wpctl?
 
     mplayer
     ffmpeg
@@ -59,7 +58,7 @@ let
     # autocutsel
     clipit
 
-    zathura
+    # zathura
     # fbreader
     # calibre
 
@@ -74,10 +73,8 @@ let
     xorg.libXi
     xorg.libX11
     libGL
-    libpulseaudio
     libpng
     libpng12
-    alsaLib
 
     wireshark-cli
 
@@ -116,17 +113,26 @@ in
   # Don't use wicd
   # imports = [ ./xserver/wicd.nix ./xserver/unfree.nix ];
   imports = [ ./xserver/unfree.nix ];
-  services.xserver = {
-    enable = true;
-    layout = kbLayout;
-    xkbOptions = kbOptions;
+  services = {
+    xserver = {
+      enable = true;
+      displayManager.sessionCommands =
+        "${pkgs.xorg.xsetroot}/bin/xsetroot -solid black; ${pkgs.xorg.xmodmap}/bin/xmodmap ${additionalKeybinds}";
+
+      xkb = {
+        layout = kbLayout;
+        options = kbOptions;
+        };
+    };
+
     libinput = {
       enable = true;
     };
 
+    logind.lidSwitch = "hibernate";
+
     displayManager = {
       defaultSession = "none+xmonad";
-      sessionCommands = "${pkgs.xorg.xsetroot}/bin/xsetroot -solid black; ${pkgs.xorg.xmodmap}/bin/xmodmap ${additionalKeybinds}";
       autoLogin = {
         enable = false;
         user = "ix";
