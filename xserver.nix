@@ -1,35 +1,7 @@
-{ touchpad ? "tapPad",  kbLayout ? "lv,de,ru", kbOptions ? "grp:caps_toggle,grp:lshift_toggle", ... }:
+{ kbLayout ? "lv,de,ru", kbOptions ? "grp:caps_toggle", ... }:
 { pkgs, ... }:
 
 let
-
-  mkSynaptics = x:
-    if x == "tapPad" then {
-      enable = true;
-      minSpeed = "1.0";
-      maxSpeed = "2.0";
-      tapButtons = true;
-      twoFingerScroll = true;
-      horizontalScroll = true;
-      palmDetect = false;
-      buttonsMap = [1 3 2];
-      additionalOptions = ''
-        Option "SoftButtonAreas" "60% 0 72% 0 40% 59% 72% 0"
-        Option "AccelerationProfile" "2"
-        Option "ConstantDeceleration" "4"
-      '';
-    } else {
-      enable = true;
-      tapButtons = false;
-      twoFingerScroll = true;
-      horizontalScroll = true;
-      palmDetect = true;
-    };
-
-
-  # blender = pkgs.lib.overrideDerivation pkgs.blender (oldAttrs: {
-	#   cudaSupport = true;
-  # });
 
   utils = with pkgs; [
     firefox
@@ -38,7 +10,6 @@ let
     # tdesktop
 
     pavucontrol
-    pulseaudio # for pactl in xmonad -- change to wpctl?
 
     mplayer
     ffmpeg
@@ -104,20 +75,19 @@ let
     ucs-fonts
   ];
 
-  additionalKeybinds = pkgs.writeText "xkb-layout" ''
-    keycode 223 = at
-  '';
+#  additionalKeybinds = pkgs.writeText "xkb-layout" ''
+#    keycode 223 = at
+#  '';
 
 in
 {
-  # Don't use wicd
-  # imports = [ ./xserver/wicd.nix ./xserver/unfree.nix ];
   imports = [ ./xserver/unfree.nix ];
   services = {
     xserver = {
       enable = true;
       displayManager.sessionCommands =
-        "${pkgs.xorg.xsetroot}/bin/xsetroot -solid black; ${pkgs.xorg.xmodmap}/bin/xmodmap ${additionalKeybinds}";
+        # "${pkgs.xorg.xsetroot}/bin/xsetroot -solid black; ${pkgs.xorg.xmodmap}/bin/xmodmap ${additionalKeybinds}";
+        "${pkgs.xorg.xsetroot}/bin/xsetroot -solid black";
 
       xkb = {
         layout = kbLayout;
@@ -130,6 +100,15 @@ in
     };
 
     logind.lidSwitch = "hibernate";
+
+    upower = {
+      enable = true;
+      percentageLow = 20;
+      percentageCritical = 15;
+      percentageAction = 10;
+      criticalPowerAction = "Hibernate";
+    };
+
 
     displayManager = {
       defaultSession = "none+xmonad";

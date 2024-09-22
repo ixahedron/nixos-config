@@ -1,7 +1,7 @@
 { ... }:
 { pkgs, ... }:
 # List packages installed in system profile. To search by name, run:
-# $ nix-env -qaP | grep wget
+# $ nix search wget
 let
   install = with pkgs; [
     gitAndTools.gitFull
@@ -16,7 +16,6 @@ let
     autossh
     acpi
     #proxychains
-    nginx
     httpie
     iptables
     w3m
@@ -64,19 +63,10 @@ let
     clinfo
     patchelf
 
-    # wineWowPackages.staging
-    # wine-devel
-    # wine
-
     # texlive.combined.scheme-full
 
   ];
 in {
-
-#  imports =
-#    [
-#      ./packages/wine-devel.nix
-#    ];
 
   environment.systemPackages = install;
 }

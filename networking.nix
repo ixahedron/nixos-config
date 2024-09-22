@@ -5,18 +5,15 @@
   networking.networkmanager.enable = true;
   # networking.networkmanager.unmanaged = ["enp2s0f0"];
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.enp2s0.useDHCP = true;
-  networking.interfaces.wlp3s0.useDHCP = true;
+  # Following the hardware-configuration comment, we set per-interface useDHCP to true.
+  networking.interfaces.enp195s0f3u1.useDHCP = true;
+  networking.interfaces.wlp1s0.useDHCP = true;
 
   networking.hostName = name;
   networking.firewall.enable = fw;
   services.openssh.enable = ssh;
   services.openssh.ports = sshPorts;
-  
+
   services.httpd = {
     enable = true;
     enablePHP = true;
