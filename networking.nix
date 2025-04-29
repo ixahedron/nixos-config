@@ -17,7 +17,7 @@
   services.httpd = {
     enable = true;
     enablePHP = true;
-    adminAddr = "inprikule@gmail.com";
+    adminAddr = "ilona.prikule@gmail.com";
   };
 
 }
