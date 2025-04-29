@@ -16,11 +16,11 @@
   networking.firewall.enable = fw;
   services.openssh.enable = ssh;
   services.openssh.ports = sshPorts;
-  
+
   services.httpd = {
     enable = true;
     enablePHP = true;
-    adminAddr = "inprikule@gmail.com";
+    adminAddr = "ilona.prikule@gmail.com";
   };
 
 }

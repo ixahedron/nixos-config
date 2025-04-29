@@ -45,7 +45,7 @@ let
     vlc
 
     rxvt-unicode
-    urxvt_perls
+    rxvt-unicode-plugins.perls
 
     haskellPackages.xmobar
     dmenu
@@ -90,6 +90,10 @@ let
   ];
 
   fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+
     cantarell-fonts
     corefonts
     dejavu_fonts
@@ -129,7 +133,10 @@ in
       enable = true;
     };
 
-    logind.lidSwitch = "hibernate";
+    logind = {
+      powerKey = "hibernate";
+      lidSwitch = "hibernate";
+    };
 
     displayManager = {
       defaultSession = "none+xmonad";

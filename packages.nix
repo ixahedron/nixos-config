@@ -38,7 +38,7 @@ let
     binutils-unwrapped
     psmisc
     lm_sensors
-    kexectools
+    # kexectools
     figlet
     tcpdump
     strace
