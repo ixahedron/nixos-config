@@ -16,10 +16,11 @@
               (import ./boot/efi.nix          {}                        )
               (import ./xserver.nix           {}                        )
               (import ./xmonad.nix            {}                        )
-              (import ./gpu.nix               { kind = "nvidia-offload"; }     )
+              # (import ./gpu.nix               { kind = "nvidia-offload"; }     )
+              (import ./gpu.nix               { kind = "no-dgpu"; }     )
               (import ./networking.nix        { ssh = true;
                                                 name = "hedron"; }      )
-              (import ./work/doma.nix         {}                        )
+              (import ./work/geosurge.nix     {}                        )
     ];
 
   # Select internationalisation properties.
@@ -35,6 +36,9 @@
   hardware = {
     bluetooth.enable = true;
   };
+
+  # Use latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Sound
   security.rtkit.enable = true;
