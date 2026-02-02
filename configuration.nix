@@ -12,7 +12,7 @@
               (import ./packages.nix {}                                 )
               (import ./users.nix { wheel = { ix = "ix"; };
                                     users = { guest = "guest"; }; }     )
-              (import ./countries/germany.nix {}                        )
+              # (import ./countries/germany.nix {}                        )
               (import ./boot/efi.nix          {}                        )
               (import ./xserver.nix           {}                        )
               (import ./xmonad.nix            {}                        )
@@ -22,6 +22,8 @@
                                                 name = "hedron"; }      )
               (import ./work/geosurge.nix     {}                        )
     ];
+
+  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties.
    console = {
@@ -56,6 +58,8 @@
     percentageAction = 10;
     criticalPowerAction = "Hibernate";
   };
+
+  services.fwupd.enable = true;
 
   # List services that you want to enable:
 
@@ -94,8 +98,11 @@
     settings = {
       # nix-path = config.nix.nixPath;
       auto-optimise-store = true;
+      trusted-users = [ "root" "ix" ];
     };
   };
+
+  programs.command-not-found.enable = true;
 
 #  system.autoUpgrade.enable = true;
   # This value determines the NixOS release from which the default

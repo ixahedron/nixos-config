@@ -34,6 +34,8 @@ let
   utils = with pkgs; [
     firefox
     chromium
+    brave
+
     discord
     # tdesktop
 
@@ -56,7 +58,7 @@ let
     gimp
 
     # autocutsel
-    clipit
+    # clipit
 
     # zathura
     # fbreader
@@ -78,9 +80,10 @@ let
 
     wireshark-cli
 
-    qt5.qtbase
-    qt5.qtquickcontrols
-    qt5.qtgraphicaleffects
+    #qt5.qtbase
+    #qt5.qtquickcontrols
+    #qt5.qtgraphicaleffects
+    # sddm-chili-theme
     ( callPackage ./xserver/sddm-theme-chili.nix { } )
 
 #    ( callPackage ./xserver/dungeondraft/default.nix { } )
@@ -92,7 +95,7 @@ let
   fonts = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
 
     cantarell-fonts
     corefonts
@@ -104,7 +107,7 @@ let
     open-sans
     proggyfonts
     terminus_font
-    ubuntu_font_family
+    ubuntu-classic
     ucs-fonts
   ];
 
@@ -133,9 +136,9 @@ in
       enable = true;
     };
 
-    logind = {
-      powerKey = "hibernate";
-      lidSwitch = "hibernate";
+    logind.settings.Login = {
+      HandlePowerKey = "hibernate";
+      HandleLidSwitch = "hibernate";
     };
 
     displayManager = {

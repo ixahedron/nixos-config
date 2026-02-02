@@ -2,7 +2,10 @@
 { ... }:
 {
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    wifi.powersave = false;
+  };
   # networking.networkmanager.unmanaged = ["enp2s0f0"];
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.

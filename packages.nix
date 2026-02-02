@@ -4,8 +4,10 @@
 # $ nix-env -qaP | grep wget
 let
   install = with pkgs; [
-    gitAndTools.gitFull
-    vimHugeX
+    gitFull
+    git-lfs
+    git-absorb
+    vim-full
     screen
     tmux
     escrotum
