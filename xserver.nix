@@ -49,10 +49,11 @@ let
 
     wireshark-cli
 
-    qt5.qtbase
-    qt5.qtquickcontrols
-    qt5.qtgraphicaleffects
-    ( callPackage ./xserver/sddm-theme-chili.nix { } )
+    # qt5.qtbase
+    # qt5.qtquickcontrols
+    # qt5.qtgraphicaleffects
+    # ( callPackage ./xserver/sddm-theme-chili.nix { } )
+    sddm-chili-theme
 
 #    ( callPackage ./xserver/dungeondraft/default.nix { } )
 #    ( writeShellScriptBin "dungeondraft-offload" "nvidia-offload dungeondraft" )
@@ -73,6 +74,7 @@ let
     terminus_font
     ubuntu_font_family
     ucs-fonts
+    comic-neue
   ];
 
 #  additionalKeybinds = pkgs.writeText "xkb-layout" ''
@@ -120,6 +122,7 @@ in
         enable = true;
         autoNumlock = true;
         theme = "chili";
+        extraPackages = [pkgs.sddm-chili-theme]
       };
 
     };

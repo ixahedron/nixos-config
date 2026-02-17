@@ -70,6 +70,7 @@
     settings = {
       # nix-path = config.nix.nixPath;
       auto-optimise-store = true;
+      trusted-users = [ "ix" ];
     };
   };
 

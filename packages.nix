@@ -5,6 +5,7 @@
 let
   install = with pkgs; [
     gitAndTools.gitFull
+    git-absorb
     vimHugeX
     screen
     tmux
