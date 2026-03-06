@@ -12,7 +12,7 @@
               (import ./packages.nix {}                                 )
               (import ./users.nix { wheel = { ix = "ix"; };
                                     users = { guest = "guest"; }; }     )
-              (import ./countries/germany.nix {}                        )
+              # (import ./countries/germany.nix {}                        )
               (import ./boot/efi.nix          {}                        )
               (import ./framework.nix         {}                        )
               (import ./xserver.nix           {}                        )
@@ -21,6 +21,8 @@
               (import ./networking.nix        { ssh = true;
                                                 name = "hedron"; }      )
     ];
+
+  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -73,6 +75,8 @@
       trusted-users = [ "ix" ];
     };
   };
+
+  programs.command-not-found.enable = true;
 
   # system.autoUpgrade.enable = true;
 

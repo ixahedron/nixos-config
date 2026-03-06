@@ -49,11 +49,8 @@ let
 
     wireshark-cli
 
-    # qt5.qtbase
-    # qt5.qtquickcontrols
-    # qt5.qtgraphicaleffects
-    # ( callPackage ./xserver/sddm-theme-chili.nix { } )
-    sddm-chili-theme
+    # elegant-sddm
+    sddm-astronaut
 
 #    ( callPackage ./xserver/dungeondraft/default.nix { } )
 #    ( writeShellScriptBin "dungeondraft-offload" "nvidia-offload dungeondraft" )
@@ -64,7 +61,7 @@ let
   fonts = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
 
     cantarell-fonts
     corefonts
@@ -76,7 +73,7 @@ let
     open-sans
     proggyfonts
     terminus_font
-    ubuntu_font_family
+    ubuntu-classic
     ucs-fonts
     comic-neue
   ];
@@ -105,9 +102,9 @@ in
       enable = true;
     };
 
-    logind = {
-      powerKey = "hibernate";
-      lidSwitch = "hibernate";
+    logind.settings.Login = {
+      HandlePowerKey = "hibernate";
+      HandleLidSwitch = "hibernate";
     };
 
     upower = {
@@ -128,8 +125,9 @@ in
       sddm = {
         enable = true;
         autoNumlock = true;
-        theme = "chili";
-        extraPackages = [pkgs.sddm-chili-theme]
+        theme = "Elegant";
+        # extraPackages = [ pkgs.elegant-sddm ];
+        extraPackages = [ pkgs.sddm-astronaut];
       };
 
     };

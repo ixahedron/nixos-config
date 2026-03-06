@@ -4,9 +4,9 @@
 # $ nix search wget
 let
   install = with pkgs; [
-    gitAndTools.gitFull
+    gitFull
     git-absorb
-    vimHugeX
+    vim-full
     screen
     tmux
     escrotum
@@ -65,6 +65,8 @@ let
     patchelf
 
     # texlive.combined.scheme-full
+
+    vscode.fhs
 
   ];
 in {
