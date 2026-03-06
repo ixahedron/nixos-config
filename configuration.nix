@@ -20,6 +20,7 @@
               (import ./gpu.nix               { kind = "no"; }     )
               (import ./networking.nix        { ssh = true;
                                                 name = "hedron"; }      )
+              (import ./work/geosurge.nix     {}                        )
     ];
 
   services.automatic-timezoned.enable = true;
